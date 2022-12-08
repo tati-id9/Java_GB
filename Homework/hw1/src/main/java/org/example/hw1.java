@@ -1,5 +1,4 @@
 package org.example;
-
 import java.util.Scanner;
 
 public class hw1 {
@@ -7,7 +6,7 @@ public class hw1 {
         System.out.println("Введите номер задачи от 1 до 3");
         Scanner iScan = new Scanner(System.in);
         int n = iScan.nextInt();
-
+        iScan.close();
         switch (n){
             case 1:
                 task1();
@@ -62,13 +61,13 @@ public class hw1 {
     /**Реализовать простой калькулятор*/
     public static void task3(){
         System.out.println("Простой калькулятор");
-        Scanner reader = new Scanner(System.in);
+        Scanner iScan = new Scanner(System.in);
         System.out.print("Введите первое число: ");
-        double num1 = reader.nextDouble();
+        double num1 = iScan.nextDouble();
         System.out.print("Введите второе число: ");
-        double num2 = reader.nextDouble();
+        double num2 = iScan.nextDouble();
         System.out.print("\nВведите оператор (+, -, *, /): ");
-        char op = reader.next().charAt(0);
+        char op = iScan.next().charAt(0);
 
         reader.close();
 
