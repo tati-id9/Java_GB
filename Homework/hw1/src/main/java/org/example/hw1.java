@@ -69,7 +69,7 @@ public class hw1 {
         System.out.print("\nВведите оператор (+, -, *, /): ");
         char op = iScan.next().charAt(0);
 
-        reader.close();
+        iScan.close();
 
         switch (op){
             case '+':
