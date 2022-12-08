@@ -61,6 +61,7 @@ public class exmp1 {
         int[] arr = {3, 3, 3, 2, 2, 3};
         int val = 3;
         System.out.println(Arrays.toString(ArrChangeToEnd(arr, val)));
+        System.out.println(Arrays.toString(PushThreeToEnd(arr, val, arr.length)));
     }
     public static int[] ArrChangeToEnd(int[] arr, int val){
         int temp = 0;
@@ -73,6 +74,20 @@ public class exmp1 {
         }
         return arr;
     }
+
+    public static int[] PushThreeToEnd(int[] arr, int val, int len){
+        int count =0;
+        for (int i = 0; i < len; i++) {
+            if(arr[i] != val){
+                arr[count++]=arr[i];
+            }
+        }
+        while (count<len){
+            arr[count++]=3;
+        }
+        return arr;
+    }
+    
     /** Напишите метод, который находит самую длинную строку общего префикса среди массива строк.
      * Если общего префикса нет, вернуть пустую строку "".*/
     public static void task5(){
@@ -106,9 +121,6 @@ public class exmp1 {
 
     }
     public static void main(String[] args) {
-        HelloUser();
-        task3();
         task4();
-        task6();
     }
 }
