@@ -6,7 +6,7 @@ public class hw1 {
         System.out.println("Введите номер задачи от 1 до 3");
         Scanner iScan = new Scanner(System.in);
         int n = iScan.nextInt();
-        iScan.close();
+
         switch (n){
             case 1:
                 task1();
@@ -21,6 +21,7 @@ public class hw1 {
                 System.out.println("вы неверно ввели номер задачи");
                 break;
         }
+        iScan.close();
     }
     /**Вычислить n-ое треугольного число(сумма чисел от 1 до n), n! (произведение чисел от 1 до n)*/
     public static void task1(){
@@ -69,7 +70,7 @@ public class hw1 {
         System.out.print("\nВведите оператор (+, -, *, /): ");
         char op = iScan.next().charAt(0);
 
-        reader.close();
+        iScan.close();
 
         switch (op){
             case '+':
@@ -90,7 +91,7 @@ public class hw1 {
                 }
                 break;
             default:  System.out.printf("Error!");
-                return;
+                break;
         }
     }
 }
