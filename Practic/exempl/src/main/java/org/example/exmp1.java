@@ -58,7 +58,7 @@ public class exmp1 {
      должны быть отличны от заданного, а остальные - равны ему.
      */
     public static void task4(){
-        int[] arr = {3,2,2,3};
+        int[] arr = {3, 3, 3, 2, 2, 3};
         int val = 3;
         System.out.println(Arrays.toString(ArrChangeToEnd(arr, val)));
     }
@@ -73,11 +73,42 @@ public class exmp1 {
         }
         return arr;
     }
-
-    public static void main(String[] args) {
-//        HelloUser();
-//        task3();
-//        task4();
+    /** Напишите метод, который находит самую длинную строку общего префикса среди массива строк.
+     * Если общего префикса нет, вернуть пустую строку "".*/
+    public static void task5(){
+        String[] str = {"Hello", "Java", "HellWorld"};
+        if (str.length == 0){
+            System.out.println("");
+        }
+        String pref = str[0];
+        for (int i = 1; i < str.length; i++) {
+            while (str[i].indexOf(pref) !=0){ //indexOf позиция в строке
+                pref = pref.substring(0, pref.length()-1);
+            }
+        }
+        System.out.println(pref);
+        if (pref.length()==0)
+        {
+            System.out.println("нет общего префекса");}
     }
 
+    //Во фразе "Добро пожаловать на курс по Java" переставить слова в обратном порядке.
+    public static void task6(){
+        String str = "Добро пожаловать на курс по Java";
+        System.out.println(str);
+        String result =  new StringBuilder(str).reverse().toString();
+        System.out.println(result);
+        //или
+        String[] convertedPhraseList = str.split(" ");
+        for (int i = 0; i < convertedPhraseList.length; i++) {
+            System.out.printf("%s ", convertedPhraseList[convertedPhraseList.length - i - 1]);
+        }
+
+    }
+    public static void main(String[] args) {
+        HelloUser();
+        task3();
+        task4();
+        task6();
+    }
 }
