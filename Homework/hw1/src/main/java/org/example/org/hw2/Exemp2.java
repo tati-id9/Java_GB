@@ -3,8 +3,6 @@ package org.hw2;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 
@@ -24,21 +22,25 @@ public class Exemp2 {
 
     private static void sqlRequest(){
 
-        Map<String, String> params = new HashMap<String,String>();
-        params.put("name","Ivanov");
-        params.put("country","Russia");
-        params.put("city","Moscow");
-        params.put("age",null);
+        String json = "name:Ivanov, country:Russia, city:Moscow, age:null";
+        
+        String[] s1 = json.split(", ");
+        StringBuilder request = new StringBuilder("SELECT * FROM students WHERE");
 
-        StringBuilder s = new StringBuilder("select * from students where ");
-        for (Map.Entry<String,String> pair : params.entrySet())
-        {
-            if (pair.getValue() != null)
-            {
-                s.append(" ").append(pair.getKey()).append("=").append(pair.getValue());
+        for (int i = 0; i < s1.length; i++) {
+            String [] parametr = s1[i].split(":");
+            String key = parametr[0];
+            String value = parametr[1];
+
+            if (!value.equals("null")) {
+                if (i!=0) {
+                    request.append(" and");
+                }
+                request.append(" ").append(key).append(" = ").append(value);
             }
         }
-        System.out.printf(s.toString());
+        System.out.println(Arrays.toString(s1));
+        System.out.println(request);
     }
 
     /**Реализуйте алгоритм сортировки пузырьком числового массива,
