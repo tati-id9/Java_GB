@@ -6,13 +6,10 @@ public class Exempl3 {
     public static void main(String[] args) {
         List<Integer> arr = new ArrayList<>();
         arr = createArrayList();
-        //System.out.println("Минимальное значение в списке: "+ getMin(arr));
-        //System.out.println("Максимальное значение в списке: "+ getMax(arr));
-        //System.out.println("Среднее значение: " + getAverage(arr));
-        int end = arr.size()-1;
-        mergeSort(arr, 0, end);
-        System.out.println(Arrays.asList(arr));
-        //System.out.println("Результат (удаление четных чисел): " + Arrays.asList(removeEvenNumbers(arr)));
+        System.out.println("Минимальное значение в списке: "+ getMin(arr));
+        System.out.println("Максимальное значение в списке: "+ getMax(arr));
+        System.out.println("Среднее значение: " + getAverage(arr));
+        System.out.println("Результат (удаление четных чисел): " + Arrays.asList(removeEvenNumbers(arr)));
 
     }
 
