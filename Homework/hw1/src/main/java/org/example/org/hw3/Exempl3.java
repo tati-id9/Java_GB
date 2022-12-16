@@ -9,8 +9,9 @@ public class Exempl3 {
         System.out.println("Минимальное значение в списке: "+ getMin(arr));
         System.out.println("Максимальное значение в списке: "+ getMax(arr));
         System.out.println("Среднее значение: " + getAverage(arr));
-        System.out.println("Результат (удаление четных чисел): " + Arrays.asList(removeEvenNumbers(arr)));
-
+        arrSort(arr, 0,arr.size()-1);
+        System.out.println("Результат после сортировки: " + Arrays.asList(arr));
+        System.out.println("Результат после удаления четных чисел: " + Arrays.asList(removeEvenNumbers(arr)));
     }
 
     private static List<Integer> createArrayList() {
@@ -23,8 +24,56 @@ public class Exempl3 {
         System.out.println("Сформированный список: "+ Arrays.asList(array));
         return array;
     }
-
     /**Реализовать алгоритм сортировки слиянием*/
+    private static void arrSort(List<Integer> al, int beg, int end) {
+        if (beg < end) {
+            int m = beg + (end - beg) / 2;
+            arrSort(al, beg, m);
+            arrSort(al, m + 1, end);
+            merge(al, beg, m, end);
+        }
+    }
+    private static void merge(List<Integer> al, int beg, int mid, int end) {
+
+        int leftSide = mid - beg + 1;
+        int rightSide = end - mid;
+        ArrayList array1 = new ArrayList(leftSide);
+        ArrayList array2 = new ArrayList(rightSide);
+        int L[] = new int[leftSide];
+        int R[] = new int[rightSide];
+
+        for (int i = 0; i < leftSide; ++i) {
+            L[i] = al.get(beg + i);
+        }
+        for (int j = 0; j < rightSide; ++j) {
+            R[j] = al.get(mid + 1 + j);
+        }
+
+        int i = 0, j = 0;
+
+        int k = beg;
+
+        while (i < leftSide && j < rightSide) {
+            if (L[i] <= R[j]) {
+                al.set(k, L[i]);
+                i++;
+            } else {
+                al.set(k, R[j]);
+                j++;
+            }
+            k++;
+        }
+        while (i < leftSide) {
+            al.set(k, L[i]);
+            i++;
+            k++;
+        }
+        while (j < rightSide) {
+            al.set(k, R[j]);
+            j++;
+            k++;
+        }
+    }
 
     /**Пусть дан произвольный список целых чисел, удалить из него четные числа*/
     private static List<Integer> removeEvenNumbers (List<Integer> arr){
