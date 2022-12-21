@@ -1,6 +1,7 @@
-package org.hw4;
+package org.example.org.hw4;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Exempl4 {
     public static void main(String[] args) {
@@ -8,8 +9,22 @@ public class Exempl4 {
         list.add(1);
         list.add(2);
         list.add(3);
-        System.out.println(list);
+        System.out.println("Исходный список: " + list);
+
         reversLinkedList(list);
+        System.out.println("Перевернутый список: " + list);
+
+        Scanner iScan = new Scanner(System.in);
+        System.out.print("Введите число для добавления: ");
+        int number = iScan.nextInt();
+        iScan.close();
+        enqueue(list,number);
+        System.out.println("Список с добавленным значением: " + list);
+
+        System.out.println("Первый элемент списка (с удалением): "+ dequeue(list) +
+                "\nСписок после удаления первого значения: " + list);
+
+        System.out.println("Первый элемент списка: "+ first(list));
 
     }
     /** 1. Пусть дан LinkedList с несколькими элементами. Реализуйте метод, который вернет “перевернутый” список.*/
@@ -21,13 +36,23 @@ public class Exempl4 {
             list.removeFirst();
             temp++;
         }
-        System.out.println(list);
     }
 
      /** 2. Реализуйте очередь с помощью LinkedList со следующими методами:
       * enqueue() - помещает элемент в конец очереди,
       * dequeue() - возвращает первый элемент из очереди и удаляет его,
       * first() - возвращает первый элемент из очереди, не удаляя.
-     * 3. В калькулятор добавьте возможность отменить последнюю операцию.
      */
+     private static void enqueue (LinkedList<Integer> list, int value){
+         list.addLast(value);
+     }
+     private static int first(LinkedList<Integer> list){
+         int value = list.getFirst();
+         return value;
+     }
+     private static int dequeue(LinkedList<Integer> list){
+         int value = list.getFirst();
+         list.removeFirst();
+         return value;
+     }
 }
