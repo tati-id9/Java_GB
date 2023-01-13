@@ -82,6 +82,12 @@ public class Main {
             case 3:
                 criterionCUP(laptops);
                 break;
+            case 4:
+                criterionRAM(laptops);
+                break;
+            case 5:
+                criterionHD(laptops);
+                break;
             default:
                 System.out.println("Вы неверно ввели номер кретерия поиска");
                 break;
@@ -125,7 +131,12 @@ public class Main {
         Scanner iScan = new Scanner(System.in);
         int numberCriterion = iScan.nextInt();
         iScan.close();
-        filterLaptop(laptops, criterion.get(numberCriterion));
+        if (criterion.containsKey(numberCriterion)) {
+            filterLaptop(laptops, criterion.get(numberCriterion));
+        }
+        else {
+            System.out.println("Вы ввели неправильный номер кретерия");
+        }
     }
 
     private static void criterionCUP(Set<Laptops> laptops){
@@ -139,7 +150,98 @@ public class Main {
         Scanner iScan = new Scanner(System.in);
         int numberCriterion = iScan.nextInt();
         iScan.close();
-        filterLaptop(laptops, criterion.get(numberCriterion));
+        if (criterion.containsKey(numberCriterion)) {
+            filterLaptop(laptops, criterion.get(numberCriterion));
+        }
+        else {
+            System.out.println("Вы ввели неправильный номер кретерия");
+        }
+    }
+
+    private static LinkedHashSet<Integer> presenceRAM(Set<Laptops> laptops){
+        LinkedHashSet<Integer> result = new LinkedHashSet<>();
+        for(Laptops lp: laptops){
+            result.add(lp.getRam());
+        }
+        return result;
+    }
+    private static void criterionRAM(Set<Laptops> laptops){
+        Map<Integer,Integer> criterion = new HashMap<Integer, Integer>();
+        criterion.put(1, 4);
+        criterion.put(2, 8);
+        criterion.put(3, 16);
+        criterion.put(4, 32);
+
+        LinkedHashSet<Integer> ram = presenceRAM(laptops);
+
+        Map<Integer,Integer> searchCriteria = new HashMap<Integer, Integer>();
+        System.out.println("Введите минимальное значение ОЗУ: ");
+        Scanner iScan = new Scanner(System.in);
+        int minCriterion = iScan.nextInt();
+        System.out.println("Введите максимальное значение ОЗУ: ");
+        int maxCriterion = iScan.nextInt();
+        iScan.close();
+        int j=0;
+        for (int i=1; i< criterion.size()+1; i++){
+            if (criterion.get(i)>= minCriterion && criterion.get(i)<=maxCriterion && ram.contains(criterion.get(i))){
+                searchCriteria.put(j,criterion.get(i));
+                j++;
+            }
+        }
+
+        if (searchCriteria.isEmpty()){
+            System.out.println("По заданым значениям нет нноутбуков");
+        }
+        else {
+            for (int i = 0; i < searchCriteria.size(); i++) {
+                String s = "ram=" + searchCriteria.get(i);
+                filterLaptop(laptops,s);
+            }
+        }
+
+    }
+
+    private static LinkedHashSet<Integer> presenceHD(Set<Laptops> laptops){
+        LinkedHashSet<Integer> result = new LinkedHashSet<>();
+        for(Laptops lp: laptops){
+            result.add(lp.getHd());
+        }
+        return result;
+    }
+    private static void criterionHD(Set<Laptops> laptops){
+        Map<Integer,Integer> criterion = new HashMap<Integer, Integer>();
+        criterion.put(1, 128);
+        criterion.put(2, 256);
+        criterion.put(3, 512);
+        criterion.put(4, 1000);
+
+        LinkedHashSet<Integer> hd = presenceHD(laptops);
+
+        Map<Integer,Integer> searchCriteria = new HashMap<Integer, Integer>();
+        System.out.println("Введите минимальное значение объема накопителя: ");
+        Scanner iScan = new Scanner(System.in);
+        int minCriterion = iScan.nextInt();
+        System.out.println("Введите максимальное значение объема накопителя: ");
+        int maxCriterion = iScan.nextInt();
+        iScan.close();
+        int j=0;
+        for (int i=1; i< criterion.size()+1; i++){
+            if (criterion.get(i)>= minCriterion && criterion.get(i)<=maxCriterion && hd.contains(criterion.get(i))){
+                searchCriteria.put(j,criterion.get(i));
+                j++;
+            }
+        }
+
+        if (searchCriteria.isEmpty()){
+            System.out.println("По заданым значениям нет нноутбуков");
+        }
+        else {
+            for (int i = 0; i < searchCriteria.size(); i++) {
+                String s = "hd=" + searchCriteria.get(i);
+                filterLaptop(laptops,s);
+            }
+        }
+
     }
 
 }
